@@ -1,0 +1,17 @@
+version: "3.1"
+
+services:
+    s3-bucket:
+        container_name: s3bucket_simulator
+        image: minio/minio
+        ports: 
+            - 9001:9000
+        environment: 
+            - MINIO_ACCESS_KEY=aws_s3_access_key
+            - MINIO_SECRET_KEY=aws_s3_access_key
+        volumes: 
+            - ./minio/data:/data
+        command: ["chmod",  "755 minio"]
+        command: ["server", "/data"]
+
+
